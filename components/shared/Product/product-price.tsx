@@ -7,9 +7,11 @@ const ProductPrice = ({
   value: number;
   className?: string;
 }) => {
-  // Ensure value is formatted to two decimal places
-  const stringValue = value.toFixed(2);
-  // Get the integer and decimal parts
+  // Ensure value is a number
+  const price = typeof value === "number" ? value : Number(value);
+  if (isNaN(price)) return null; // or show a fallback
+
+  const stringValue = price.toFixed(2);
   const [integerPart, decimalPart] = stringValue.split(".");
 
   return (
